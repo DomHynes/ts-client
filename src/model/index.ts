@@ -1,17 +1,14 @@
-import todos, { TodosModel } from "./todos";
-import notification, { NotificationModel } from "./notification";
 import auth, { AuthModel } from "./auth";
+import me, { MeModel } from "./me";
 
 export interface StoreModel {
-  todos: TodosModel;
-  notification: NotificationModel;
   auth: AuthModel;
+  me: MeModel;
 }
 
 const model: StoreModel = {
-  todos,
-  notification,
-  auth
+  auth,
+  me
 };
 
 export default model;
