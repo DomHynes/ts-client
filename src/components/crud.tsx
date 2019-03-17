@@ -27,6 +27,7 @@ export default function CRUD() {
       {users.users.map(user => (
         <UserCard
           user={user}
+          loading={users.loading}
           onUpdate={(id: string, user: Partial<User>) => updateUser({ id, user })}
         />
       ))}

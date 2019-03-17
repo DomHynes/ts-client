@@ -12,6 +12,7 @@
     "react-dom": "^16.8.4",
     "react-final-form-hooks": "^1.0.1",
     "react-scripts": "2.1.8",
+    "react-skeleton-loader": "^1.0.4",
     "react-use-form-state": "^0.8.0",
     "rebass": "^3.0.1",
     "styled-components": "^4.1.3",

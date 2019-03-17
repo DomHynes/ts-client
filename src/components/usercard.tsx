@@ -2,8 +2,10 @@ import React from 'react';
 import { Card } from 'rebass';
 import { User } from '../model/users';
 import { useFormState } from 'react-use-form-state';
-import { fontSize, FontSizeProps, WidthProps, width, space, SpaceProps } from 'styled-system';
+import { fontSize, FontSizeProps, WidthProps, space, SpaceProps, themeGet } from 'styled-system';
 import styled from 'styled-components';
+import Skeleton from 'react-skeleton-loader';
+import { Text } from 'rebass';
 
 const UserCardInput = styled.input<FontSizeProps & WidthProps & SpaceProps>`
   ${fontSize}
@@ -19,9 +21,10 @@ const UserCardInput = styled.input<FontSizeProps & WidthProps & SpaceProps>`
 type UserCardProps = {
   user: User;
   onUpdate: (id: string, user: Partial<User>) => void;
+  loading: boolean;
 };
 
-const UserCard: React.FC<UserCardProps> = ({ user, onUpdate }) => {
+const UserCard: React.FC<UserCardProps> = ({ user, onUpdate, loading }) => {
   const [formState, { text }] = useFormState<{ username: string }>({
     username: user.username,
   });
@@ -33,10 +36,16 @@ const UserCard: React.FC<UserCardProps> = ({ user, onUpdate }) => {
           e.preventDefault();
           onUpdate(user.id, formState.values);
         }}>
-        <UserCardInput fontSize={6} {...text('username')} />
+        {!loading ? (
+          <UserCardInput fontSize={6} {...text('username')} />
+        ) : (
+          <Text fontSize={6}>
+            <Skeleton height={themeGet('fontSize.6')} />
+          </Text>
+        )}
         <ul>
           {user.roles.map(role => (
-            <li>{role}</li>
+            <li>{!loading ? role : <Skeleton />}</li>
           ))}
         </ul>
       </form>

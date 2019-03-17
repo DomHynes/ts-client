@@ -31,12 +31,14 @@ const users: UsersModel = {
     state.loading = payload;
   }),
   getUsers: thunk(async state => {
+    state.setLoading(true);
     const users = await backend.getUsers();
-    console.warn({ users });
     state.saveUsers(users);
+    state.setLoading(false);
   }),
   updateUser: thunk(async (state, payload) => {
-    const user = await backend.updateUser(payload.id, payload.user);
+    state.setLoading(true);
+    await backend.updateUser(payload.id, payload.user);
     state.getUsers();
   }),
 };
