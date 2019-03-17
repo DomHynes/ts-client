@@ -10,6 +10,7 @@ import { Text } from 'rebass';
 const UserCardInput = styled.input<FontSizeProps & WidthProps & SpaceProps>`
   ${fontSize}
   ${space}
+  box-sizing: border-box;
 
   border: none;
   display: inline;
@@ -30,7 +31,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onUpdate, loading }) => {
   });
 
   return (
-    <Card width={[1, 1 / 5]} p={5} m={5} borderRadius={8}>
+    <Card width={[1, 400]} p={[2, 5]} m={[2, 5]} borderRadius={8}>
       <form
         onSubmit={e => {
           e.preventDefault();

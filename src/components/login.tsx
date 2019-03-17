@@ -3,7 +3,13 @@ import { useFormState } from 'react-use-form-state';
 
 import { useStore, useActions } from '../store';
 import { LoginRequest } from '../model/auth';
-import { Box, Flex } from 'rebass';
+import { Flex, Card, FlexProps } from 'rebass';
+import { height, HeightProps } from 'styled-system';
+import styled from 'styled-components';
+
+const LoginWrapper = styled(Flex)<FlexProps & HeightProps>`
+  ${height}
+`;
 
 export default function Login() {
   const { auth, me } = useStore(state => state);
@@ -17,22 +23,24 @@ export default function Login() {
 
   if (!auth.authenticated || !me.details) {
     return (
-      <form
-        onSubmit={async e => {
-          e.preventDefault();
-          await login(formState.values);
-          await getDetails();
-        }}>
-        <Box width={600}>
-          <Flex flexDirection="column">
-            <input {...text('username')} required />
-            <input {...password('password')} required />
-            <button>Submit</button>
-          </Flex>
-        </Box>
-      </form>
+      <LoginWrapper alignItems="center" justifyContent="center" width="100%" height="100%">
+        <form
+          onSubmit={async e => {
+            e.preventDefault();
+            await login(formState.values);
+            await getDetails();
+          }}>
+          <Card width={['100vw', 350]} p={3}>
+            <Flex flexDirection="column">
+              <input {...text('username')} required />
+              <input {...password('password')} required />
+              <button>Submit</button>
+            </Flex>
+          </Card>
+        </form>
+      </LoginWrapper>
     );
   }
 
-  return <div>{`Hello, ${me.details.user.username}`}</div>;
+  return null;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { useStore, useActions } from '../store';
 import UserCard from './usercard';
 import { Flex } from 'rebass';
@@ -23,7 +23,7 @@ export default function CRUD() {
   }
 
   return (
-    <Flex>
+    <Flex flexDirection={['column', 'row']}>
       {users.users.map(user => (
         <UserCard
           user={user}
