@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import Login from './login';
+import CRUD from './crud';
 
 class App extends Component {
   render() {
@@ -7,6 +8,7 @@ class App extends Component {
       <div>
         <h1>Easy Peasy + Typescript</h1>
         <Login />
+        <CRUD />
       </div>
     );
   }

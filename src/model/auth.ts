@@ -1,5 +1,5 @@
-import { Action, action, Thunk, thunk } from "easy-peasy";
-import { BackendService } from "../services";
+import { Action, action, Thunk, thunk } from 'easy-peasy';
+import { BackendService } from '../services';
 
 export interface LoginRequest {
   username: string;
@@ -29,8 +29,8 @@ const auth: AuthModel = {
   }),
   loginSuccess: action((state, payload) => {
     state.authenticated = true;
-    state.jwt = payload
-  })
+    state.jwt = payload;
+  }),
 };
 
 export default auth;

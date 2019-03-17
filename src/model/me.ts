@@ -1,5 +1,5 @@
-import { Action, action, Thunk, thunk } from "easy-peasy";
-import backend from "../services/backend";
+import { Action, action, Thunk, thunk } from 'easy-peasy';
+import backend from '../services/backend';
 
 export interface User {
   id: string;
@@ -26,7 +26,7 @@ const me: MeModel = {
   }),
   saveDetails: action((state, payload) => {
     state.details = payload;
-  })
+  }),
 };
 
 export default me;
