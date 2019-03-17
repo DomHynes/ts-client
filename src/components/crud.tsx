@@ -1,6 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import { useStore, useActions } from '../store';
 import UserCard from './usercard';
+import { Flex } from 'rebass';
+import { User } from '../model/users';
 
 export default function CRUD() {
   const { users, me } = useStore(state => state);
@@ -11,7 +13,6 @@ export default function CRUD() {
   }));
 
   useEffect(() => {
-    console.warn({ me });
     if (me.details) {
       getUsers();
     }
@@ -22,10 +23,13 @@ export default function CRUD() {
   }
 
   return (
-    <Fragment>
+    <Flex>
       {users.users.map(user => (
-        <UserCard user={user} onUpdate={(id, user) => updateUser({ id, user })} />
+        <UserCard
+          user={user}
+          onUpdate={(id: string, user: Partial<User>) => updateUser({ id, user })}
+        />
       ))}
-    </Fragment>
+    </Flex>
   );
 }
